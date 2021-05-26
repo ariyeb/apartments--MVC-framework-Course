@@ -20,6 +20,7 @@ namespace Apartments__MVC_Course
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            // base url(www.ynet.co.il)/57
         }
     }
 }
