@@ -26,3 +26,31 @@ textarea {
 .stams-table {
     width: 100%;
 }
+
+.apartments {
+    width: 100%;
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 2rem;
+}
+
+.apartments__card {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    background: #87CEFA;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+    .apartments__card img {
+        max-width: 90%;
+        margin: 5px;
+    }
+
+.details-img {
+    max-width: 60%;
+}

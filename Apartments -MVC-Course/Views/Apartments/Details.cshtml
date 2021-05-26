@@ -1,0 +1,18 @@
+﻿@model Apartments__MVC_Course.Models.Apartment
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+<img src="@Model.ImageUrl" alt="@Model.City" class="details-img" />
+<p>City: @Model.City</p>
+<p>Street: @Model.Street</p>
+<p>Apartment Number: @Model.ApartmentNumber</p>
+<p>Description: @Model.Description</p>
+<p>Price: @Model.priceInILS ILS</p>
+<p>Owner: Moshe</p>
+
+<button class="btn btn-info">
+    @Html.ActionLink("Back To Aprtments", "", "Apartments")
+</button>
