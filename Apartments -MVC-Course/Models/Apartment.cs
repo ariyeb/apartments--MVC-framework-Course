@@ -9,14 +9,14 @@ namespace Apartments__MVC_Course.Models
     {
 
 
-        public int Id;
-        public string OwnerId;
-        public string City;
-        public string Street;
-        public int ApartmentNumber;
-        public string Description;
-        public int priceInILS;
-        public string ImageUrl;
+        public int Id { get; set; }
+        public string OwnerId { get; set; }
+        public string City { get; set; }
+        public string Street { get; set; }
+        public int ApartmentNumber { get; set; }
+        public string Description { get; set; }
+        public int priceInILS { get; set; }
+        public string ImageUrl { get; set; }
 
         public Apartment() { }
         public Apartment(int id, string ownerId, string city, string street, int apartmentNumber, string description, int priceInILS, string imageUrl)
