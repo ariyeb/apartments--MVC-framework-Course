@@ -8,30 +8,43 @@
 <h2>Add Apartment</h2>
 @using (Html.BeginForm("Save", "Apartments", FormMethod.Post))
 {
+    @Html.ValidationSummary()
     <div class="form-group">
         @Html.LabelFor(a => a.City)
         @Html.TextBoxFor(a => a.City, new { @class = "form-control" })
+        @Html.ValidationMessageFor(a => a.City)
     </div>
     <div class="form-group">
         @Html.LabelFor(a => a.Street)
         @Html.TextBoxFor(a => a.Street, new { @class = "form-control" })
+        @Html.ValidationMessageFor(a => a.Street)
     </div>
     <div class="form-group">
         @Html.LabelFor(a => a.ApartmentNumber)
         @Html.TextBoxFor(a => a.ApartmentNumber, new { @class = "form-control" })
+        @Html.ValidationMessageFor(a => a.ApartmentNumber)
     </div>
     <div class="form-group">
         @Html.LabelFor(a => a.Description)
         @Html.TextBoxFor(a => a.Description, new { @class = "form-control" })
+        @Html.ValidationMessageFor(a => a.Description)
     </div>
     <div class="form-group">
         @Html.LabelFor(a => a.priceInILS)
         @Html.TextBoxFor(a => a.priceInILS, new { @class = "form-control" })
+        @Html.ValidationMessageFor(a => a.priceInILS)
     </div>
     <div class="form-group">
         @Html.LabelFor(a => a.ImageUrl)
         @Html.TextBoxFor(a => a.ImageUrl, new { @class = "form-control" })
+        @Html.ValidationMessageFor(a => a.ImageUrl)
     </div>
     @Html.HiddenFor(a => a.Id)
+    @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
 }

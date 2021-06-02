@@ -8,6 +8,14 @@
 }
 
 <h2>Apartments</h2>
+@using (Html.BeginForm("", "apartments", FormMethod.Get))
+{
+    <div class="form-group">
+        <label for="city">Search apartments in city</label>
+        <input type="text" placeholder="City" name="city" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+}
 @if (apartments.Count == 0)
 {
     <div class="alert alert-info">There is no apartments for sale</div>

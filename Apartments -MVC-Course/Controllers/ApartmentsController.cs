@@ -24,11 +24,26 @@ namespace Apartments__MVC_Course.Controllers
             _context = new ApplicationDbContext();
         }
 
+        //        צרו חנות מחשבים – 
+        //לכל מחשב יש: שם חברה; שם דגם; מעבד; זיכרון פנימי; וזיכרון חיצוני
+        //צרו אתר שמציג את כל המחשבים;
+        //וכאשר לוחצים על מחשב הוא מציג עמוד עם פרטי המחשב עם כפתור מחיקה שמוחק את המחשב מבסיס הנתונים.
+        //צרו עמוד להוספת מחשב ועמוד לעריכת פרטי מחשב קיים.
 
         // GET: /Apartments
-        public ActionResult Index()
+        public ActionResult Index(string city)
         {
-            var apartments = _context.Apartments.ToList();
+            List<Apartment> apartments;
+            if (string.IsNullOrEmpty(city))
+            {
+                apartments = _context.Apartments.ToList();
+            }
+            else
+            {
+                city = city.ToLower();
+                apartments = _context.Apartments.Where(a => a.City.ToLower().Contains(city)).ToList();
+            }
+
             var aparmentsDtos = apartments.Select(Mapper.Map<Apartment, ApartmentDto>).ToList();
             var viewModel = new ApartmentsViewModel()
             {
@@ -70,8 +85,12 @@ namespace Apartments__MVC_Course.Controllers
             return View("ApartmentForm", apartmentDto);
         }
 
+        [ValidateAntiForgeryToken]
         public ActionResult Save(ApartmentDto apartmentDto)
         {
+            if (!ModelState.IsValid)
+                return View("ApartmentForm", apartmentDto);
+
             if (apartmentDto.Id == 0)
             {
                 var apartment = Mapper.Map<ApartmentDto, Apartment>(apartmentDto);
