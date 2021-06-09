@@ -10,6 +10,7 @@ using AutoMapper;
 
 namespace Apartments__MVC_Course.Controllers
 {
+    //[Authorize]
     public class ApartmentsController : Controller
     {
         //private List<Apartment> apartments = new List<Apartment>
@@ -39,6 +40,7 @@ namespace Apartments__MVC_Course.Controllers
 
 
         // GET: /Apartments
+        [AllowAnonymous]
         public ActionResult Index(string city)
         {
             List<Apartment> apartments;
@@ -60,7 +62,7 @@ namespace Apartments__MVC_Course.Controllers
             return View(viewModel);
         }
 
-        // בוויו הזה אמורים להיות מוצגים גל הפרטים של אותה דירה מסויימת 
+        //[Authorize]
         public ActionResult Details(int id)
         {
             //if (id >= apartments.Count)

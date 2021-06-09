@@ -70,6 +70,10 @@ namespace Apartments__MVC_Course.Models
         public string Email { get; set; }
 
         [Required]
+        [Range(18, int.MaxValue, ErrorMessage = "You must be at least 18 years old to register.")]
+        public int Age { get; set; }
+
+        [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
