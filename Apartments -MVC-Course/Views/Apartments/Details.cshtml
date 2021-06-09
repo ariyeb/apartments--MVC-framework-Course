@@ -1,22 +1,31 @@
 ﻿@*@model Apartments__MVC_Course.Models.Apartment*@
-@model Apartments__MVC_Course.Dtos.ApartmentDto
+@*@model Apartments__MVC_Course.Dtos.ApartmentDto*@
+@model Apartments__MVC_Course.ViewModels.ApartmentDetailsViewModel
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@{
+    var apartment = Model.Apartment;
+}
+
 <h2>Details</h2>
-<img src="@Model.ImageUrl" alt="@Model.City" class="details-img" />
-<p>City: @Model.City</p>
-<p>Street: @Model.Street</p>
-<p>Apartment Number: @Model.ApartmentNumber</p>
-<p>Description: @Model.Description</p>
-<p>Price: @Model.priceInILS ILS</p>
-<p>Owner: Moshe</p>
+<img src="@apartment.ImageUrl" alt="@apartment.City" class="details-img" />
+<p>City: @apartment.City</p>
+<p>Street: @apartment.Street</p>
+<p>Apartment Number: @apartment.ApartmentNumber</p>
+<p>Description: @apartment.Description</p>
+<p>Price: @apartment.priceInILS ILS</p>
+<p>Owner: @Model.OwnerName</p>
 
 <button class="btn btn-info">
     @Html.ActionLink("Back To Aprtments", "", "Apartments")
 </button>
-<button class="btn btn-info">
-    @Html.ActionLink("Edit", "edit", "Apartments", new { id = Model.Id }, null)
-</button>
+@if (Model.CanEditApartment)
+{
+    <button class="btn btn-info">
+        @Html.ActionLink("Edit", "edit", "Apartments", new { id = apartment.Id }, null)
+    </button>
+}
+

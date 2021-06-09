@@ -77,9 +77,18 @@ namespace Apartments__MVC_Course.Controllers
             if (apartment == null)
                 return HttpNotFound();
 
+            var userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            var owner = _context.Users.Single(u => u.Id == apartment.OwnerId);
             var apartmentDto = Mapper.Map<Apartment, ApartmentDto>(apartment);
 
-            return View(apartmentDto);
+            var viewModel = new ApartmentDetailsViewModel()
+            {
+                Apartment = apartmentDto,
+                OwnerName = owner.UserName,
+                CanEditApartment = owner.Id == userId
+            };
+
+            return View(viewModel);
         }
 
         public ActionResult New()
@@ -91,8 +100,9 @@ namespace Apartments__MVC_Course.Controllers
 
         public ActionResult Edit(int id)
         {
+            var userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
             var apartment = _context.Apartments.SingleOrDefault(a => a.Id == id);
-            if (apartment == null)
+            if (apartment == null || userId != apartment.OwnerId)
                 return HttpNotFound();
 
             var apartmentDto = Mapper.Map<Apartment, ApartmentDto>(apartment);
