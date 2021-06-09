@@ -64,6 +64,8 @@ namespace Apartments__MVC_Course.Models
 
     public class RegisterViewModel
     {
+        public string UserName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

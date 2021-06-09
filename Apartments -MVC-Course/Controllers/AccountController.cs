@@ -153,7 +153,7 @@ namespace Apartments__MVC_Course.Controllers
             {
                 var user = new ApplicationUser
                 {
-                    UserName = model.Email,
+                    UserName = model.UserName,
                     Email = model.Email,
                     Age = model.Age
                 };
