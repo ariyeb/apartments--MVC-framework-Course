@@ -7,6 +7,7 @@ using Apartments__MVC_Course.Models;
 using Apartments__MVC_Course.Dtos;
 using Apartments__MVC_Course.ViewModels;
 using AutoMapper;
+using Microsoft.AspNet.Identity;
 
 namespace Apartments__MVC_Course.Controllers
 {
@@ -37,6 +38,10 @@ namespace Apartments__MVC_Course.Controllers
         //הוספת מחשב
         //עריכת פרטי מחשב קיים
         //מחיקת מחשב קיים
+
+        // להוסיף שם משתמש בוויו של פרטי הדירה
+        // הכפתור של העריכה מופיעה אך ורק אם הדירה שייכת למשתמש הרשום באפליקציה
+        // לאקשיין של העריכה אין גישה למשתמש שהדירה איננה שייכת לו
 
 
         // GET: /Apartments
@@ -103,8 +108,10 @@ namespace Apartments__MVC_Course.Controllers
 
             if (apartmentDto.Id == 0)
             {
+                var userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
                 var apartment = Mapper.Map<ApartmentDto, Apartment>(apartmentDto);
-                apartment.OwnerId = "Moshe";
+                //apartment.OwnerId = "Moshe";
+                apartment.OwnerId = userId;
                 _context.Apartments.Add(apartment);
             }
             else
